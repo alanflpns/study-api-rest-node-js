@@ -1,7 +1,11 @@
 import { app } from "./app";
+import { env } from "./env";
 
 app
-  .listen({ port: process.env.PORT ? Number(process.env.PORT) : 3333 })
+  .listen({
+    port: env.PORT,
+    host: "RENDER" in process.env ? "0.0.0.0" : "localhost",
+  })
   .then(() => {
     console.log("HTTP Server is running");
   });
